@@ -2,6 +2,6 @@
   "name": "picture_uploader",
   "version": "0.0.1",
   "dependencies": {
-    "formidable": "1.0.6"
+
   }
 }
