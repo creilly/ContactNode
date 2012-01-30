@@ -5,7 +5,7 @@ var querystring = require("querystring");
 
 home = fs.readFileSync('./home.html','utf8');
 arena = fs.readFileSync('./arena.html','utf8');
-arenaScript = fs.readFileSync('./arenaScript.js','utf8');
+arenaScript = fs.readFileSync('./arenascript.js','utf8');
 userQueue = ['apple','orange','banana','strawberry'];
 users = [];
 newUserResponses = [];
