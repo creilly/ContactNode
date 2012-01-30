@@ -1,7 +1,6 @@
 var http = require("http");
 var url = require("url");
 var fs = require("fs");
-var $ = require("jquery");
 var querystring = require("querystring");
 
 home = fs.readFileSync('./home.html','utf8');
