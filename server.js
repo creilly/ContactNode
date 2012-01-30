@@ -49,19 +49,27 @@ function start() {
 		}
 	    }
 	});		  
-	if (pathname == '/' || pathname == '') 
-	{
+	switch (pathname){
+	    case('/favicon.ico'):
+	    respond(response,'eat shit','text/plain');
+	    break;
+
+	    case('/'): 
 	    respond(response,home,'text/html');
-	}
-	if (pathname == '/users'){
+	    break;
+	    
+	    case('/users'):
 	    respond(response,JSON.stringify(users),'application/json');
-	}	
-	if (pathname == '/arenascript.js'){
+	    break;
+
+	    case('/arenascript.js'):
 	    respond(response,arenaScript,'text/javascript');
-	}
-	if (pathname == '/newuser'){
+	    break;
+
+	    case('/newuser'):
 	    newUserResponses.push(response);
-	    console.log('new user request')
+	    console.log('new user request');
+	    break;	    
 	}
     }
 

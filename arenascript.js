@@ -2,8 +2,7 @@ var i = 0;
 
 function newUser(){
     i += 1;
-    alert( 'call #' + i.toString() );
-    $.get("/newuser", function(user){
+    $.get("/newuser", i.toString(), function(user){
 	$("<li>" + user + "</li>").appendTo("ul");
 	newUser();
     });    
