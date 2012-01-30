@@ -6,12 +6,11 @@ var querystring = require("querystring");
 home = fs.readFileSync('./home.html','utf8');
 arena = fs.readFileSync('./arena.html','utf8');
 arenaScript = fs.readFileSync('./arenascript.js','utf8');
-userQueue = ['apple','orange','banana','strawberry'];
+userQueue = ['apple','orange','banana'];
 users = [];
 newUserResponses = [];
 
 function respond(response,text,type){
-    console.log('sending: ', text.length);
     response.writeHead(200, {"Content-Type": type});
     response.write(text);
     response.end();
@@ -21,7 +20,6 @@ function start() {
     function onRequest(request, response) {
 	var pathname = url.parse(request.url).pathname;
 	var postData = "";
-	console.log( "pathname = " + pathname );
 	request.addListener("data", function(chunk){
 	    postData += chunk;
 	});
@@ -31,12 +29,16 @@ function start() {
 		if (password == "bella"){
 		    newUser = userQueue.pop();
 		    if (newUser){
-			respond(response,arena,'text/html');
 			users.push(newUser);
+			console.log("purging new user requests...");
+			var i = 0;
 			while (newUserResponses.length){
+			    i += 1;
+			    console.log(i);
 			    resp = newUserResponses.pop();
 			    respond(resp,newUser,'text/plain');
 			}
+			respond(response,arena,'text/html');
 		    }
 		    else {
 			respond(response,"Arena full",'text/html');
@@ -59,6 +61,7 @@ function start() {
 	}
 	if (pathname == '/newuser'){
 	    newUserResponses.push(response);
+	    console.log('new user request')
 	}
     }
 
