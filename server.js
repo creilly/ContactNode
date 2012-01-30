@@ -29,12 +29,17 @@ function start() {
 	    password = querystring.parse(postData).pass;
 	    if (pathname == "/arena"){
 		if (password == "bella"){
-		    respond(response,arena,'text/html');
 		    newUser = userQueue.pop();
-		    users.push(newUser);
-		    while (newUserResponses.length){
-			resp = newUserResponses.pop();
-			respond(resp,newUser,'text/plain');
+		    if (newUser){
+			respond(response,arena,'text/html');
+			users.push(newUser);
+			while (newUserResponses.length){
+			    resp = newUserResponses.pop();
+			    respond(resp,newUser,'text/plain');
+			}
+		    }
+		    else {
+			respond(response,"Arena full",'text/html');
 		    }
 		}
 		else {
