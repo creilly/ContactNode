@@ -2,6 +2,5 @@
   "name": "shit_piler",
   "version": "0.0.1",
   "dependencies": {
-      "jquery" : "0.0.1"
   }
 }
