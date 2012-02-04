@@ -1,18 +1,27 @@
-var i = 0;
+var name = '';
 
-function newUser(){
-    i += 1;
-    $.get("/newuser", i.toString(), function(user){
-	$("<li>" + user + "</li>").appendTo("ul");
-	newUser();
-    });    
+function data(obj){
+    return {data: JSON.stringify(obj)}
+}
+function nameList(now){
+    alert(now);
+    $.getJSON('/users',data({name: name, now: now}),function(data){
+	alert(JSON.stringify(data));
+	var items = [];	
+
+	$.each(data, function(key, val) {
+	    if (val == name){
+		val = '<b>' + val + '</b>';
+	    }
+	    items.push('\t<li id="' + key + '">' + val + '</li>');
+	});
+
+	$("ul").html(items.join('\n'));
+	nameList(false);	
+    });
 }
 
-$( function() {    
-    $.getJSON("/users", function(data) {
-	for (var player in data){
-	    $("<li>" + data[player] + "</li>").appendTo("ul");
-	}
-    });  
-    newUser();
+$( function() {
+    name = $('#name').text().trim();
+    nameList(true);
 });

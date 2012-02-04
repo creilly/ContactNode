@@ -1,0 +1,5 @@
+switch ('alpha') {
+    case 'beta': 
+      log.console('shit!');
+      break;
+    case 'beta' || 'alpha'
